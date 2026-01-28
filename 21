@@ -1,0 +1,26 @@
+#include<stdio.h>
+int q[100],f=0,r=0;
+int g[5][5]={{0,1,1,0,0},
+             {1,0,1,1,0},
+             {1,1,0,0,1},
+             {0,1,0,0,1},
+             {0,0,1,1,0}};
+int v[5]={0};
+void bfs(int s){
+    q[r++]=s;
+    v[s]=1;
+    while(f<r){
+        int c=q[f++];
+        printf("%d ",c);
+        for(int i=0;i<5;i++)
+            if(g[c][i]==1 && !v[i]){
+                q[r++]=i;
+                v[i]=1;
+            }
+    }
+}
+int main(){
+    printf("BFS: ");
+    bfs(0);
+    return 0;
+}
