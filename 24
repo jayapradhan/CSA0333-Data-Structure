@@ -1,0 +1,15 @@
+#include<stdio.h>
+int g[5][5]={0,2,0,6,0,2,0,3,8,5,0,3,0,0,7,6,8,0,0,9,0,5,7,9,0};
+int v[5]={0},k[5]={999,999,999,999,999},p[5];
+void prim(){
+    k[0]=0;p[0]=-1;
+    for(int c=0;c<4;c++){
+        int min=999,u;
+        for(int i=0;i<5;i++)if(!v[i]&&k[i]<min)min=k[i],u=i;
+        v[u]=1;
+        for(int i=0;i<5;i++)if(g[u][i]&&!v[i]&&g[u][i]<k[i])p[i]=u,k[i]=g[u][i];
+    }
+    printf("MST:\n");
+    for(int i=1;i<5;i++)printf("%d-%d: %d\n",p[i],i,g[i][p[i]]);
+}
+int main(){prim();}
