@@ -1,0 +1,17 @@
+#include<stdio.h>
+int main(){
+    int a[]={10,20,30,20,40,20},n=6,x,count=0;
+    printf("Array: 10 20 30 20 40 20\nSearch: ");
+    scanf("%d",&x);
+    
+    printf("Found at positions: ");
+    for(int i=0;i<n;i++){
+        if(a[i]==x){
+            printf("%d ",i+1);
+            count++;
+        }
+    }
+    if(count==0) printf("None (Not found)");
+    printf("\nTotal occurrences: %d\n",count);
+    return 0;
+}
