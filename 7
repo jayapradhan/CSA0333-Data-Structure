@@ -1,0 +1,27 @@
+#include<stdio.h>
+int a[100],n=0;
+void ins(int p,int v){
+    if(p<1||p>n+1)return;
+    for(int i=n;i>=p;i--)a[i]=a[i-1];
+    a[p-1]=v; n++;
+}
+void del(int p){
+    if(p<1||p>n)return;
+    for(int i=p-1;i<n-1;i++)a[i]=a[i+1];
+    n--;
+}
+void show(){
+    for(int i=0;i<n;i++)printf("%d ",a[i]);
+    printf("\n");
+}
+int main(){
+    int ch,p,v;
+    while(1){
+        printf("1.Ins 2.Del 3.Show 4.Exit: ");scanf("%d",&ch);
+        if(ch==1){printf("Pos Val: ");scanf("%d%d",&p,&v);ins(p,v);}
+        else if(ch==2){printf("Pos: ");scanf("%d",&p);del(p);}
+        else if(ch==3)show();
+        else break;
+    }
+    return 0;
+}
