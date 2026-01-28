@@ -1,0 +1,13 @@
+#include<stdio.h>
+struct node{int d;struct node*l,*r;};
+void in(struct node*r){if(r){in(r->l);printf("%d ",r->d);in(r->r);}}
+void pre(struct node*r){if(r){printf("%d ",r->d);pre(r->l);pre(r->r);}}
+void post(struct node*r){if(r){post(r->l);post(r->r);printf("%d ",r->d);}}
+int main(){
+    struct node n1={1},n2={2},n3={3},n4={4},n5={5};
+    n1.l=&n2;n1.r=&n3;n2.l=&n4;n2.r=&n5;
+    printf("Inorder: ");in(&n1);
+    printf("\nPreorder: ");pre(&n1);
+    printf("\nPostorder: ");post(&n1);
+    return 0;
+}
