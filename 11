@@ -1,0 +1,6 @@
+#include <stdio.h>
+int s[5],t=-1; //stack and top
+void p(int v){if(t==4)printf("Full\n");else s[++t]=v;} //push
+void o(){if(t==-1)printf("Empty\n");else printf("%d\n",s[t--]);} //pop
+void e(){if(t==-1)printf("Empty\n");else printf("%d\n",s[t]);} //peek
+int main(){p(10);p(20);e();o();e();}
