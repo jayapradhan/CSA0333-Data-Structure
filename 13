@@ -1,0 +1,6 @@
+#include <stdio.h>
+int q[5], f = -1, r = -1;
+void enq(int x) { if(r == 4) printf("Full\n"); else q[++r] = x; if(f == -1) f = 0; }
+void deq() { if(f > r || f == -1) printf("Empty\n"); else printf("%d ", q[f++]); }
+void dis() { for(int i = f; i <= r; i++) printf("%d ", q[i]); }
+int main() { enq(10); enq(20); enq(30); dis(); deq(); dis(); }
