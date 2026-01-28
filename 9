@@ -1,0 +1,22 @@
+#include<stdio.h>
+int main(){
+    int n,x;
+    printf("Array size: "); scanf("%d",&n);
+    int a[n];
+    printf("Enter %d numbers in SORTED order: ",n);
+    for(int i=0;i<n;i++) scanf("%d",&a[i]);
+    
+    printf("Search: "); scanf("%d",&x);
+    
+    int l=0,h=n-1,pos=-1;
+    while(l<=h){
+        int m=l+(h-l)/2;
+        if(a[m]==x){pos=m;break;}
+        else if(a[m]<x) l=m+1;
+        else h=m-1;
+    }
+    
+    if(pos!=-1) printf("Found at position %d\n",pos+1);
+    else printf("Not found\n");
+    return 0;
+}
