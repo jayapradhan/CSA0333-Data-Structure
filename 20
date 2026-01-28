@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int d;
+    struct node *l,*r;
+};
+int max(int a,int b){return a>b?a:b;}
+int ht(struct node *n){return n?1+max(ht(n->l),ht(n->r)):0;}
+struct node* rotR(struct node *y){
+    struct node *x=y->l;
+    y->l=x->r;
+    x->r=y;
+    return x;
+}
+struct node* rotL(struct node *x){
+    struct node *y=x->r;
+    x->r=y->l;
+    y->l=x;
+    return y;
+}
+struct node* insert(struct node* root,int val){
+    if(!root){
+        struct node* t=(struct node*)malloc(sizeof(struct node));
+        t->d=val;t->l=t->r=NULL;
+        return t;
+    }
+    if(val<root->d) root->l=insert(root->l,val);
+    else root->r=insert(root->r,val);
+    
+    int bal=ht(root->l)-ht(root->r);
+    if(bal>1 && val<root->l->d) return rotR(root);
+    if(bal<-1 && val>root->r->d) return rotL(root);
+    if(bal>1 && val>root->l->d){root->l=rotL(root->l);return rotR(root);}
+    if(bal<-1 && val<root->r->d){root->r=rotR(root->r);return rotL(root);}
+    return root;
+}
+void inorder(struct node *root){if(root){inorder(root->l);printf("%d ",root->d);inorder(root->r);}}
+int search(struct node *root,int val){return root?(val==root->d?1:val<root->d?search(root->l,val):search(root->r,val)):0;}
+int main(){
+    struct node *root=NULL;
+    root=insert(root,10);
+    root=insert(root,20);
+    root=insert(root,30);
+    root=insert(root,40);
+    printf("AVL Tree: ");
+    inorder(root);
+    printf("\nSearch 20: %s",search(root,20)?"Found":"Not found");
+    return 0;
+}
